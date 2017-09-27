@@ -1,0 +1,48 @@
+"specs"
+
+on play:  board materializes
+          any previous boards reset
+
+objects:  players (or turns (x and o)
+          determines where clicked for each player
+          determines if valid (on top, outside, etc)
+
+functions:determiner of win/loss/draw
+          drawer
+          slave function click listener
+            determines if valid, then animation, checks for end of game conditions, switches turn
+
+how triggered:
+          on click listener with grid/box system
+
+key value pairs:
+          each box open, or claimed by either player
+          which player gets X or O
+
+how triggered:
+          event listener (for clicks)
+
+how info collected:
+          names from input
+          clicks for moves
+
+behaviors (easiest to hardest):
+          getting users' name
+          click listening by area/div/whatever
+          drawing/aninmating something in that area
+          drawing board
+          determining turn and alternating drawn object accordingly
+          end of game:
+            determining win
+              three moves in a row
+            draw:
+              board is full with no win
+            determining loss (against computer): 
+              sort of like win.
+
+          ...
+
+          player goes first or "coin flip"
+
+          computers' logic (if made available)
+            should always try to expand/complete an existing row/column/diagonal
