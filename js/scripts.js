@@ -1,7 +1,7 @@
 function Game(){
-  this.player1 = new Player(1),
-  this.player2 = new Player(2),
+  this.players = [];
   this.boxes = [];
+  this.playerTurn = 0;
 }
 
 function Player(player){
@@ -14,10 +14,12 @@ function Box() {
 
 Game.prototype.makeBoard = function(){
   for (var i = 0; i<9; i++) {
-    var box = new Box();
-    this.boxes.push(box);
+    this.boxes.push(new Box());
   }
+  this.players.push(new Player("X"));
+  this.players.push(new Player("O"));
 }
+
 Game.prototype.valid = function(box) {
   if (this.boxes[box].empty === "") {
     return true;
@@ -25,24 +27,42 @@ Game.prototype.valid = function(box) {
   return false;
 }
 
+Game.prototype.playerSwitch = function() {
+  if (this.playerTurn === 0){
+    this.playerTurn++
+    return this.players[1].player;
+  } else {
+    this.playerTurn--
+    return this.players[0].player
+  }
+}
+
 Game.prototype.turn = function(boxId, valid, player) {
   console.log(valid, boxId);
   if (valid) {
-    this.boxes.splice(boxId, 1, "X");
+    this.boxes.splice(boxId, 1, player);
     console.log(this.boxes);
   }
+  //if(endOfGame){
+    //return
+  //}
+}
+
+Game.prototype.endOfGame = function() {
+
 }
 
 $(document).ready(function() {
   var game = new Game();
+
   game.makeBoard();
   var boxes = ["0", "1", "2", "3", "4", "5", "6", "7", "8"];
-  //var boxes = ["0", "1x2", "1x3", "2x1", "2x2", "2x3", "3x1", "3x2", "3x3"];
   for (var i=0; i<boxes.length; i++) {
     $("#" + boxes[i]).click(function(){
       var boxId = parseInt(this.id);
-    //  console.log(game, boxId);
-      var turn = game.turn(boxId, game.valid(boxId))
+      var playerSwitch = game.playerSwitch();
+      console.log("player turn",game.players[1].player);
+      var turn = game.turn(boxId, game.valid(boxId), playerSwitch)
       $("#" + this.id).text(turn)
     });
   }

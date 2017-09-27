@@ -1,10 +1,10 @@
 "specs"
 
 on play:  board materializes
-          any previous boards reset
+          any previous boards reset[]
 
 objects:  players (or turns (x and o)
-          determines where clicked for each player
+          determines where clicked for each player[]
           determines if valid (on top, outside, etc)
 
 functions:determiner of win/loss/draw
@@ -37,7 +37,7 @@ behaviors (easiest to hardest):
               three moves in a row
             draw:
               board is full with no win
-            determining loss (against computer): 
+            determining loss (against computer):
               sort of like win.
 
           ...
