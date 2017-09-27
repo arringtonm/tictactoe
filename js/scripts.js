@@ -33,7 +33,7 @@ Game.prototype.playerSwitch = function() {
   if (this.playerTurn === 0){
     this.playerTurn++
     return this.players[0].player;
-  } else {
+  } else if (this.playerTurn === 1) {
     this.playerTurn--
     return this.players[1].player
   }
@@ -58,29 +58,36 @@ Game.prototype.endOfGame = function() {
     return "X";
   } else if (/([012]{3}|[345]{3}|[678]{3}|[036]{3}|[147]{3}|[258]{3}|[048]{3}|[246]{3})/.test(claimedO)){
     return "O";
+  } else if (this.territoryX.length === 5 && this.territoryO.length === 4) {
+    return "Draw"
   }
 }
 
 $(document).ready(function() {
   var game = new Game();
-
+  var endOfGame = false;
+  console.log(endOfGame);
   game.makeBoard();
   var boxes = ["0", "1", "2", "3", "4", "5", "6", "7", "8"];
   for (var i=0; i<boxes.length; i++) {
     $("#" + boxes[i]).click(function(){
-      var boxId = parseInt(this.id);
-      var playerSwitch = game.playerSwitch();
-      var turn = game.turn(boxId, game.valid(boxId), playerSwitch)
-      if (turn === "winner"){
-        alert("Winner!");
-      } else {
+      if (endOfGame === false) {
+        var boxId = parseInt(this.id);
+        var turn = game.turn(boxId, game.valid(boxId), game.playerSwitch());
+        console.log(turn);
         $("#" + this.id).text(turn);
-      }
-      var winCheck = game.endOfGame();
-      if (winCheck === "X") {
-        alert("x tho yo!");
-      } else if (winCheck === "O") {
-        alert("o tho yo!");
+        var winCheck = game.endOfGame();
+        if (winCheck === "X") {
+          alert("x tho yo!");
+          endOfGame = true;
+          console.log(endOfGame);
+        } else if (winCheck === "O") {
+          alert("o tho yo!");
+          endOfGame = true;
+        } else if (winCheck === "Draw") {
+          alert("draw tho yo!")
+          endOfGame = true;
+        }
       }
     });
   }

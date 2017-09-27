@@ -1,34 +1,63 @@
+body {
+  padding-top: 50px;
+  font-size: 200px;
+  background-color: black;
+  color: lightblue;
+}
+h1 {
+  text-align: center;
+  font-size: 72px;
+  padding-bottom: 50px;
+}
 .square {
-    float:left;
-    position: relative;
-    width: 30%;
-    padding-bottom : 30%; /* = width for a 1:1 aspect ratio */
-    margin:1.66%;
-    overflow:hidden;
+  float:left;
+  position: relative;
+  width: 30%;
+  padding-bottom : 30%;
+  margin: 0%;
+  overflow:hidden;
+}
+#s0,#s1,#s3,#s4 {
+  border-right: 15px solid lightblue;
+  border-bottom: 15px solid lightblue;
+}
+#s2,#s5 {
+  border-bottom: 15px solid lightblue;
+}
+#s7,#s6 {
+  border-right: 15px solid lightblue;
 }
 
 .content {
-    position:absolute;
-    height:80%; /* = 100% - 2*10% padding */
-    width:90%; /* = 100% - 2*5% padding */
-    padding: 10% 5%;
-    border: 10px solid;
+  position:absolute;
+  height:80%;
+  width:90%;
+  padding-left: 25%;
+  padding-bottom: 20%;
+  align-content: center;
+  align-items: center;
+
 }
 .table{
-    display:table;
-    height:100%;
-    width:100%;
+  display:table;
+  height:100%;
+  width:100%;
 
 }
 .table-cell{
-    display:table-cell;
-    vertical-align:middle;
-    height:100%;
-    width:100%;
+  display:table-cell;
+  vertical-align:middle;
+  height:100%;
+  width:100%;
 
 }
 
 div {
-    width: 30%;
-    padding-bottom: 30%; /* = width for a square aspect ratio */
+  width: 30%;
+  padding-bottom: 30%;
+}
+
+.gameover {
+  z-index: 0;
+  opacity: 0.5;
 }
