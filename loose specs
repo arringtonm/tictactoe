@@ -1,11 +1,11 @@
 "specs"
 
-on play:  board materializes
+on play:  board materializes[x]
           any previous boards reset[]
 
-objects:  players (or turns (x and o)
-          determines where clicked for each player[]
-          determines if valid (on top, outside, etc)
+objects:  players (or turns (x and o)[x]
+          determines where clicked for each player[x]
+          determines if valid (on top, outside, etc)[x]
 
 functions:determiner of win/loss/draw
           drawer
@@ -13,25 +13,25 @@ functions:determiner of win/loss/draw
             determines if valid, then animation, checks for end of game conditions, switches turn
 
 how triggered:
-          on click listener with grid/box system
+          on click listener with grid/box system[x]
 
 key value pairs:
-          each box open, or claimed by either player
-          which player gets X or O
+          each box open, or claimed by either player[x]
+          which player gets X or O[x]
 
 how triggered:
-          event listener (for clicks)
+          event listener (for clicks)[x]
 
 how info collected:
           names from input
-          clicks for moves
+          clicks for moves[x]
 
 behaviors (easiest to hardest):
           getting users' name
-          click listening by area/div/whatever
-          drawing/aninmating something in that area
-          drawing board
-          determining turn and alternating drawn object accordingly
+          click listening by area/div/whatever[x]
+          drawing/aninmating something in that area[x]  TO DO improve
+          drawing board [x]
+          determining turn and alternating drawn object accordingly [x]
           end of game:
             determining win
               three moves in a row
@@ -46,3 +46,22 @@ behaviors (easiest to hardest):
 
           computers' logic (if made available)
             should always try to expand/complete an existing row/column/diagonal
+
+
+winning conditions
+  0,1,2
+  3,4,5
+  6,7,8
+
+  0,3,6
+  1,4,7
+  2,5,8
+
+  0,4,8
+  2,4,6
+
+  if /(012|345|678|)/ {
+  loop
+  }
+  /x{3}/.
+  x,x,x,o,o,s,s,s,s,s
