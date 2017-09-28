@@ -25,8 +25,9 @@ Game.prototype.makeBoard = function(){
 Game.prototype.valid = function(box) {
   if (this.boxes[box].boxValue === "") {
     return true;
+  } else if (this.boxes[box].boxValue === undefined){
+    return false;
   }
-  return false;
 }
 
 Game.prototype.playerSwitch = function() {
@@ -39,8 +40,9 @@ Game.prototype.playerSwitch = function() {
   }
 }
 
-Game.prototype.turn = function(boxId, valid, player) {
-  if (valid) {
+Game.prototype.turn = function(boxId, valid) {
+  if (valid === true) {
+    var player = this.playerSwitch();
     this.boxes.splice(boxId, 1, player);
     if (player === "X") {
       this.territoryX.push(boxId);
@@ -48,6 +50,23 @@ Game.prototype.turn = function(boxId, valid, player) {
       this.territoryO.push(boxId);
     }
     return this.boxes[boxId];
+  } else if (valid === false) {
+
+  }
+}
+
+Game.prototype.computerTurn = function() {
+  for (var i = 0; i < 9; i++) {
+    var boxId = Math.floor(Math.random() * 8)
+    if (this.valid(boxId) === true) {
+      this.playerSwitch();
+      this.boxes.splice(boxId, 1, "O")
+      this.territoryO.push(boxId);
+      var computer = [this.boxes[boxId], boxId]
+      return computer;
+    } else if (this.valid(boxId) === false){
+
+    }
   }
 }
 
@@ -66,29 +85,64 @@ Game.prototype.endOfGame = function() {
 $(document).ready(function() {
   var game = new Game();
   var endOfGame = false;
-  console.log(endOfGame);
   game.makeBoard();
-  var boxes = ["0", "1", "2", "3", "4", "5", "6", "7", "8"];
-  for (var i=0; i<boxes.length; i++) {
-    $("#" + boxes[i]).click(function(){
-      if (endOfGame === false) {
-        var boxId = parseInt(this.id);
-        var turn = game.turn(boxId, game.valid(boxId), game.playerSwitch());
-        console.log(turn);
-        $("#" + this.id).text(turn);
-        var winCheck = game.endOfGame();
-        if (winCheck === "X") {
-          alert("X wins!");
-          endOfGame = true;
-          console.log(endOfGame);
-        } else if (winCheck === "O") {
-          alert("O wins!");
-          endOfGame = true;
-        } else if (winCheck === "Draw") {
-          alert("It's a draw!")
-          endOfGame = true;
+  $("#pvp").click(function(){
+    $("#buttons").hide();
+    $("#board").show();
+    var boxes = ["0", "1", "2", "3", "4", "5", "6", "7", "8"];
+    for (var i=0; i<boxes.length; i++) {
+      $("#" + boxes[i]).click(function(){
+        if (endOfGame === false) {
+          var boxId = parseInt(this.id);
+          var turn = game.turn(boxId, game.valid(boxId));
+          $("#" + this.id).text(turn);
+          var winCheck = game.endOfGame();
+          if (winCheck === "X") {
+            alert("X wins!");
+            endOfGame = true;
+          } else if (winCheck === "O") {
+            alert("O wins!");
+            endOfGame = true;
+          } else if (winCheck === "Draw") {
+            alert("It's a draw!")
+            endOfGame = true;
+          }
         }
-      }
-    });
-  }
+      });
+    }
+  });
+  $("#computer").click(function(){
+    $("#buttons").hide();
+    $("#board").show();
+    var boxes = ["0", "1", "2", "3", "4", "5", "6", "7", "8"];
+    for (var i=0; i<boxes.length; i++) {
+      $("#" + boxes[i]).click(function(){
+        if (endOfGame === false) {
+          var boxId = parseInt(this.id);
+          var turn = game.turn(boxId, game.valid(boxId));
+          $("#" + this.id).text(turn);
+          var winCheck = game.endOfGame();
+          if (winCheck === "X") {
+            alert("X wins!");
+            endOfGame = true;
+          } else if (winCheck === "Draw") {
+            alert("It's a draw!")
+            endOfGame = true;
+          }
+        }
+        if (endOfGame === false && game.territoryX.length > game.territoryO.length) {
+          var computer = game.computerTurn()
+          $("#" + computer[1]).text(computer[0]);
+          var winCheck = game.endOfGame();
+          if (winCheck === "O") {
+            alert("O wins!");
+            endOfGame = true;
+          } else if (winCheck === "Draw") {
+            alert("It's a draw!")
+            endOfGame = true;
+          }
+        }
+      });
+    }
+  });
 });
