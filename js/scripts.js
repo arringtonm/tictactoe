@@ -56,7 +56,7 @@ Game.prototype.turn = function(boxId, valid) {
 }
 
 Game.prototype.computerTurn = function() {
-  for (var i = 0; i < 9; i++) {
+  while (1<2) {
     var boxId = Math.floor(Math.random() * 8)
     if (this.valid(boxId) === true) {
       this.playerSwitch();
@@ -64,8 +64,6 @@ Game.prototype.computerTurn = function() {
       this.territoryO.push(boxId);
       var computer = [this.boxes[boxId], boxId]
       return computer;
-    } else if (this.valid(boxId) === false){
-
     }
   }
 }
