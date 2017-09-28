@@ -44,8 +44,8 @@ h1 {
 .box {
   display: block;
   float: left;
-  height: 250px;
-  width: 250px;
+  height: 255px;
+  width: 255px;
   border: 10px solid lightblue;
   text-align: center;
   line-height: 250px;
