@@ -10,28 +10,79 @@
   </head>
   <body>
     <div class="container">
-      <h1>Shall we play a game?</h1>
-      <div id="buttons">
-        <button id="computer" type="button" name="button" class="btn">1 Player</button>
-        <button id="pvp" type="button" name="button" class="btn">2 Player</button>
+      <h1>SHALL WE PLAY A GAME?</h1>
+      <p class="splash">
+      CHESS<br>
+      POKER<br>
+      FIGHTER COMBAT<br>
+      GUERILLA ENGAGEMENT<br>
+      DESERT WARFARE<br>
+      AIR-TO-GROUND ACTIONS<br>
+      THEATERWIDE TACTICAL WARFARE<br>
+      THEATERWIDE BIOTOXIC AND CHEMICAL WARFARE<br><br>
+      GLOBAL THERMONUCLEAR WAR<br>
+      <br><br><br>
+      <div class="typewriter splash">
+        HOW ABOUT A NICE GAME OF TIC-TAC-TOE?
+        <!-- <div id="buttons"> -->
+          <button id="computer" type="button" name="button">1 Player</button>
+          <button id="pvp" type="button" name="button">2 Player</button>
+        <!-- </div> -->
+
       </div>
+      </p>
       <div id="board">
-        <div>
+        <div class="row">
           <div class="box left-column top-row" id="0"></div>
           <div class="box top-row" id="1"></div>
           <div class="box right-column top-row" id="2"></div>
         </div>
-        <div>
+        <div class="row">
           <div class="box left-column" id="3"></div>
           <div class="box" id="4"></div>
           <div class="box right-column" id="5"></div>
         </div>
-        <div>
+        <div class="row">
           <div class="box left-column bottom-row" id="6"></div>
           <div class="box bottom-row" id="7"></div>
           <div class="box bottom-row right-column" id="8"></div>
         </div>
       </div>
+      <div id="endOfGame">
+        <p><div class="typewriter redux">A STRANGE GAME.
+        THE ONLY WINNING MOVE IS
+        NOT TO PLAY. <button type="button" class="buttonReset">Try Again?</button></div></p>
+      </div>
+      <div id="xWin">
+        <p><div class="typewriter redux">A STRANGE GAME.
+        PLAYER 1 WINS! <button type="button" class="buttonReset">Try Again?</button></div></p>
+      </div>
+      <div id="oWin">
+        <p><div class="typewriter redux">A STRANGE GAME.
+        PLAYER 2 WINS! <button type="button" class="buttonReset">Try Again?</button></div></p>
+      </div>
     </div>
   </body>
 </html>
+
+<!--
+
+CHESS
+POKER
+FIGHTER COMBAT
+GUERILLA ENGAGEMENT
+DESERT WARFARE
+AIR-TO-GROUND ACTIONS
+THEATERWIDE TACTICAL WARFARE
+THEATERWIDE BIOTOXIC AND CHEMICAL WARFARE
+
+GLOBAL THERMONUCLEAR WAR
+
+
+GLOBAL THERMONUCLEAR WAR
+
+A STRANGE GAME.
+THE ONLY WINNING MOVE IS
+NOT TO PLAY.
+
+HOW ABOUT A NICE GAME OF CHESS? -->

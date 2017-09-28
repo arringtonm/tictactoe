@@ -56,7 +56,7 @@ Game.prototype.turn = function(boxId, valid) {
 }
 
 Game.prototype.computerTurn = function() {
-  while (1<2) {
+  while (1) {
     var boxId = Math.floor(Math.random() * 8)
     if (this.valid(boxId) === true) {
       this.playerSwitch();
@@ -85,7 +85,7 @@ $(document).ready(function() {
   var endOfGame = false;
   game.makeBoard();
   $("#pvp").click(function(){
-    $("#buttons").hide();
+    $(".splash").hide();
     $("#board").show();
     var boxes = ["0", "1", "2", "3", "4", "5", "6", "7", "8"];
     for (var i=0; i<boxes.length; i++) {
@@ -96,13 +96,13 @@ $(document).ready(function() {
           $("#" + this.id).text(turn);
           var winCheck = game.endOfGame();
           if (winCheck === "X") {
-            alert("X wins!");
+            $("#xWin").show();
             endOfGame = true;
           } else if (winCheck === "O") {
-            alert("O wins!");
+            $("#oWin").show();
             endOfGame = true;
           } else if (winCheck === "Draw") {
-            alert("It's a draw!")
+            $("#endOfGame").show();
             endOfGame = true;
           }
         }
@@ -110,7 +110,7 @@ $(document).ready(function() {
     }
   });
   $("#computer").click(function(){
-    $("#buttons").hide();
+    $(".splash").hide();
     $("#board").show();
     var boxes = ["0", "1", "2", "3", "4", "5", "6", "7", "8"];
     for (var i=0; i<boxes.length; i++) {
@@ -121,10 +121,10 @@ $(document).ready(function() {
           $("#" + this.id).text(turn);
           var winCheck = game.endOfGame();
           if (winCheck === "X") {
-            alert("X wins!");
+            $("#xWin").show();
             endOfGame = true;
           } else if (winCheck === "Draw") {
-            alert("It's a draw!")
+            $("#endOfGame").show();
             endOfGame = true;
           }
         }
@@ -133,14 +133,17 @@ $(document).ready(function() {
           $("#" + computer[1]).text(computer[0]);
           var winCheck = game.endOfGame();
           if (winCheck === "O") {
-            alert("O wins!");
+            $("#oWin").show();
             endOfGame = true;
           } else if (winCheck === "Draw") {
-            alert("It's a draw!")
+            $("#endOfGame").show();
             endOfGame = true;
           }
         }
       });
     }
   });
+  $("button.buttonReset").click(function() {
+    location.reload();
+  })
 });
