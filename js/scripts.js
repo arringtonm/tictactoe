@@ -81,28 +81,36 @@ Game.prototype.endOfGame = function() {
 }
 
 $(document).ready(function() {
+  var audioClick = new Audio("sounds/click.mp3") ;
+  var audioClick2 = new Audio("sounds/click2.mp3") ;
+  var audioTriad = new Audio("sounds/triad.mp3" ) ;
   var game = new Game();
   var endOfGame = false;
   game.makeBoard();
   $("#pvp").click(function(){
+    audioClick.play();
     $(".splash").hide();
     $("#board").show();
     var boxes = ["0", "1", "2", "3", "4", "5", "6", "7", "8"];
     for (var i=0; i<boxes.length; i++) {
       $("#" + boxes[i]).click(function(){
         if (endOfGame === false) {
+          audioClick2.play();
           var boxId = parseInt(this.id);
           var turn = game.turn(boxId, game.valid(boxId));
           $("#" + this.id).text(turn);
           var winCheck = game.endOfGame();
           if (winCheck === "X") {
             $("#xWin").show();
+            audioTriad.play();
             endOfGame = true;
           } else if (winCheck === "O") {
             $("#oWin").show();
+            audioTriad.play();
             endOfGame = true;
           } else if (winCheck === "Draw") {
             $("#endOfGame").show();
+            audioTriad.play();
             endOfGame = true;
           }
         }
@@ -110,21 +118,25 @@ $(document).ready(function() {
     }
   });
   $("#computer").click(function(){
+    audioClick.play();
     $(".splash").hide();
     $("#board").show();
     var boxes = ["0", "1", "2", "3", "4", "5", "6", "7", "8"];
     for (var i=0; i<boxes.length; i++) {
       $("#" + boxes[i]).click(function(){
         if (endOfGame === false) {
+          audioClick.play();
           var boxId = parseInt(this.id);
           var turn = game.turn(boxId, game.valid(boxId));
           $("#" + this.id).text(turn);
           var winCheck = game.endOfGame();
           if (winCheck === "X") {
             $("#xWin").show();
+            audioTriad.play();
             endOfGame = true;
           } else if (winCheck === "Draw") {
             $("#endOfGame").show();
+            audioTriad.play();
             endOfGame = true;
           }
         }
@@ -134,9 +146,11 @@ $(document).ready(function() {
           var winCheck = game.endOfGame();
           if (winCheck === "O") {
             $("#oWin").show();
+            audioTriad.play();
             endOfGame = true;
           } else if (winCheck === "Draw") {
             $("#endOfGame").show();
+            audioTriad.play();
             endOfGame = true;
           }
         }
@@ -144,6 +158,9 @@ $(document).ready(function() {
     }
   });
   $("button.buttonReset").click(function() {
+    audioTriad.play();
     location.reload();
+    // }
+
   })
 });
