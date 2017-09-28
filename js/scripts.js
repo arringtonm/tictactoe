@@ -54,9 +54,9 @@ Game.prototype.turn = function(boxId, valid, player) {
 Game.prototype.endOfGame = function() {
   var claimedX = this.territoryX.join("");
   var claimedO = this.territoryO.join("");
-  if (/([012]{3}|[345]{3}|[678]{3}|[036]{3}|[147]{3}|[258]{3}|[048]{3}|[246]{3})/.test(claimedX)){
+  if (claimedX.match(/([012](?=.*[012].*[012])|[345](?=.*[345].*[345])|[678](?=.*[678].*[678])|[036](?=.*[036].*[036])|[147](?=.*[147].*[147])|[258](?=.*[258].*[258])|[048](?=.*[048].*[048])|[246](?=.*[246].*[246]))/)){
     return "X";
-  } else if (/([012]{3}|[345]{3}|[678]{3}|[036]{3}|[147]{3}|[258]{3}|[048]{3}|[246]{3})/.test(claimedO)){
+  } else if (claimedO.match(/([012](?=.*[012].*[012])|[345](?=.*[345].*[345])|[678](?=.*[678].*[678])|[036](?=.*[036].*[036])|[147](?=.*[147].*[147])|[258](?=.*[258].*[258])|[048](?=.*[048].*[048])|[246](?=.*[246].*[246]))/)){
     return "O";
   } else if (this.territoryX.length === 5 && this.territoryO.length === 4) {
     return "Draw"
@@ -78,14 +78,14 @@ $(document).ready(function() {
         $("#" + this.id).text(turn);
         var winCheck = game.endOfGame();
         if (winCheck === "X") {
-          alert("x tho yo!");
+          alert("X wins!");
           endOfGame = true;
           console.log(endOfGame);
         } else if (winCheck === "O") {
-          alert("o tho yo!");
+          alert("O wins!");
           endOfGame = true;
         } else if (winCheck === "Draw") {
-          alert("draw tho yo!")
+          alert("It's a draw!")
           endOfGame = true;
         }
       }
